@@ -1,0 +1,17 @@
+<h3>Enter a ten-digit US phone number:</h3>
+<%= form_with model: @conversation do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="container my-3">
+    <div class="row align-items-start">
+      <div class="col-sm-2">
+        <%= f.label :number, "Number", class: "col-form-label" %>
+      </div>
+      <div class="col-sm-4 mb-4">
+        <%= f.telephone_field :number, class: "form-control" %>
+      </div>
+    </div>
+    <div>
+      <%= f.submit "Start Conversation", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
