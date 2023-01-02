@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-resources :conversations
-root 'conversations#new'
+  resources :conversations do
+    resources :messages
+  end
+  root 'conversations#new'
 end
