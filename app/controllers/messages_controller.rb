@@ -2,9 +2,7 @@ class MessagesController < ApplicationController
   def create
     @conversation = Conversation.find(params[:conversation_id])
     @message = @conversation.messages.build(msg_params)
-    if @message.save
-      redirect_to @conversation
-    end
+    @message.save
   end
 
   private

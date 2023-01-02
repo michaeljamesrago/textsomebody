@@ -2,6 +2,7 @@
 <div>
   <%= render "layouts/new_message_form" %>
 </div>
+<%= turbo_stream_from @conversation %>
 <div id="messages">
   <%= render @conversation.messages %>
 </div>
