@@ -1,8 +1,10 @@
-<h3><%= @conversation.number %></h3>
-<div>
-  <%= render "layouts/new_message_form" %>
-</div>
-<%= turbo_stream_from @conversation %>
-<div id="messages">
-  <%= render @conversation.messages %>
+<div class="col-lg-6">
+  <h3 class="text-center"><%= @conversation.number %></h3>
+  <div>
+    <%= render "layouts/new_message_form" %>
+  </div>
+  <%= turbo_stream_from @conversation %>
+  <div id="messages">
+    <%= render @conversation.messages %>
+  </div>
 </div>

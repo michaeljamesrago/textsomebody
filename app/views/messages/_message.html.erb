@@ -1,1 +1,5 @@
-<div><%= message.body %></div>
+<div class="<%= message.incoming ? "incoming" : "outgoing" %>">
+  <div class="text">
+    <%= message.body %>
+  </div>
+</div>
