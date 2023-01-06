@@ -4,7 +4,11 @@
     <%= render "layouts/new_message_form" %>
   </div>
   <%= turbo_stream_from @conversation %>
-  <div id="messages">
+  <div  id="messages"
+        data-controller="smart-scroll"
+        data-action="smart-scroll:added->smart-scroll#handleAdded 
+                     resize->smart-scroll#handleAdded 
+                     scroll->smart-scroll#handleScroll">
     <%= render @conversation.messages %>
   </div>
 </div>

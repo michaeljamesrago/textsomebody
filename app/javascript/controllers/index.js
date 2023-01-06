@@ -9,3 +9,9 @@ application.register("hello", HelloController)
 
 import ResetFormController from "./reset_form_controller"
 application.register("reset-form", ResetFormController)
+
+import SmartScrollController from "./smart_scroll_controller"
+application.register("smart-scroll", SmartScrollController)
+
+import SmartScrollItemController from "./smart_scroll_item_controller"
+application.register("smart-scroll-item", SmartScrollItemController)
