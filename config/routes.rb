@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   root 'conversations#new'
 
   post '/incoming_messages', to: "incoming_messages#create"
+
+  mount ActionCable.server => '/cable'
 end
