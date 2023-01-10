@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  number: MyString
+  number: "2345678900"
 
 two:
-  number: MyString
+  number: "3456789001"

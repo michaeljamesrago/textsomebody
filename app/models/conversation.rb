@@ -1,9 +1,12 @@
 class Conversation < ApplicationRecord
-  validates :number, presence: true, uniqueness: true
   has_many :messages
 
+  VALID_PHONE_NUMBER_REGEX = /\A[0-9]{10}\z/
+  validates :number, presence: true, uniqueness: true,
+                      format: { with: VALID_PHONE_NUMBER_REGEX }
+
   def send_sms(body)
-    if ENV["RAILS_ENV"] != "development"
+    if !(["development", "test"].include? ENV["RAILS_ENV"])
       client = Twilio::REST::Client.new
       client.messages.create(
         from: ENV['TWILIO_FROM_NUMBER'],
