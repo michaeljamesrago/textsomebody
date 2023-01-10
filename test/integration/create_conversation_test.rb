@@ -11,7 +11,7 @@ class CreateConversationTest < ActionDispatch::IntegrationTest
   end
 
   test "should not accept invalid submission" do
-    assert_no_difference "Conversation.count", 1 do
+    assert_no_difference "Conversation.count" do
       post conversations_path, params: { conversation: { number: "INVALID" } }
     end
     assert_response :unprocessable_entity
