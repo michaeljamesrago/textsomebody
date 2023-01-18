@@ -1,7 +1,7 @@
 <div class="col-lg-6">
   <h3 class="text-center"><%= @conversation.number %></h3>
   <div>
-    <%= render "layouts/new_message_form" %>
+    <%= render "layouts/new_message_form" if !!session[:conversation_id] && (session[:conversation_id] == @conversation.id) %>
   </div>
   <%= turbo_stream_from @conversation %>
   <div  id="messages"

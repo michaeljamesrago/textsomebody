@@ -1,7 +1,6 @@
 class ConversationsController < ApplicationController
   def new
-    if !!session[:conversation_id] && 
-      conversation = Conversation.find(session[:conversation_id])
+    if !!session[:conversation_id] && (conversation = Conversation.find(session[:conversation_id]))
       redirect_to conversation_path(conversation.token)
     else
       @conversation = Conversation.new
