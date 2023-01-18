@@ -10,7 +10,7 @@ class ConversationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get conversation_path(conversations(:one))
+    get conversation_path(conversations(:one).token)
     assert_response :success
     assert_template :show
   end

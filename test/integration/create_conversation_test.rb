@@ -7,7 +7,7 @@ class CreateConversationTest < ActionDispatch::IntegrationTest
     end
     conversation = Conversation.find_by(number: "9998887777")
     assert_not_nil conversation
-    assert_redirected_to conversation_path(conversation)
+    assert_redirected_to conversation_path(conversation.token)
   end
 
   test "should not accept invalid submission" do

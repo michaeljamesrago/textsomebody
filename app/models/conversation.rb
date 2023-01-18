@@ -1,6 +1,8 @@
 class Conversation < ApplicationRecord
   has_many :messages
 
+  before_create :create_token
+
   VALID_PHONE_NUMBER_REGEX = /\A[0-9]{10}\z/
   validates :number, presence: true, uniqueness: true,
                       format: { with: VALID_PHONE_NUMBER_REGEX }
@@ -15,4 +17,13 @@ class Conversation < ApplicationRecord
       )
     end
   end
+
+  def Conversation.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  private
+    def create_token
+      self.token = Conversation.new_token
+    end
 end
