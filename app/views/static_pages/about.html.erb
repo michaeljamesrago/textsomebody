@@ -23,9 +23,7 @@
   this conversation</li>
   <li>The user is redirected to the url where the new conversation is displayed</li>
 </ol>
-<pre>
-          DEMO GIF
-</pre>
+<%= image_tag "textsomebodydemo2.gif" %>
 <p>
   At this point, the new conversation is just a blank space. Now it's time to create 
   some messages for it.
@@ -35,9 +33,7 @@
   The user's view of the conversation will display the form they'll use to create 
   new messages.
 </p>
-<pre>
-          DEMO GIF OF MESSAGE BEING CREATED
-</pre>
+<%= image_tag "textsomebodydemo3.gif" %>
 <p>
   Notice that the new message appears in the conversation without a page reload. 
   If we were relying only on the HTTP request/response cycle, the user would have 
@@ -194,3 +190,4 @@ end</pre>
   the new message is broadcast over the conversation's channel, so that anyone viewing 
   the conversation will see it updated with the new message in real time.
 </p>
+<%= image_tag "textsomebodydemo4.gif" %>
