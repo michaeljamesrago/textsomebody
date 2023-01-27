@@ -38,16 +38,16 @@
   Notice that the new message appears in the conversation without a page reload. 
   If we were relying only on the HTTP request/response cycle, the user would have 
   to refresh the page every time they wanted to check for new messages. But using 
-  websocket technology, our server updates the page every time a new message is 
-  added to the conversation, without the user having to do anything at all.
+  websockets, our server updates the page every time a new message is added to the 
+  conversation, without the user having to do anything at all.
 </p>
 <p>
-  There are a couple of steps we need to take in order to take advantage of this 
-  technology. First, we use an Active Record Callback in our Message model. This 
-  will allow us to specify an action to be taken at a particular point in the 
-  lifecycle of an Active Record Object. In this case, whenever a new message is 
-  saved and committed to the database, we want to broadcast it over a channel 
-  identified by the conversation that message belongs to.
+  There are a couple of steps we need to take in order to use websockets. First, we 
+  use an Active Record Callback in our Message model. This will allow us to specify 
+  an action to be taken at a particular point in the lifecycle of an Active Record 
+  Object. In this case, whenever a new message is saved and committed to the 
+  database, we want to broadcast it over a channel identified by the conversation 
+  that message belongs to.
 </p>
 <div class="ms-5">
 
@@ -191,3 +191,37 @@ end</pre>
   the conversation will see it updated with the new message in real time.
 </p>
 <%= image_tag "textsomebodydemo4.gif" %>
+<h5>Sharing a Conversation</h5>
+<p>
+  Conversations and their messages are publicly accessible, so sharing a conversation is 
+  as easy as sharing its url. However, the ability to add new messages to the conversation 
+  through the web interface is available only to the conversation's creator.
+</p>
+<p>
+  As stated above, when a user submits a new phone number, a cookie is set in their browser 
+  identifying them as the creator of the new conversation. This allows us to conditionally 
+  render the form that submits new messages.
+</p>
+<div class="ms-5">
+<pre># # In app/views/conversations/show.html.rb
+  &lt;div&gt;
+    <%%= render "layouts/new_message_form" if !!session[:conversation_id] && 
+                                             (session[:conversation_id] == @conversation.id) %>
+  &lt;/div&gt;</pre>
+</div>
+<p>
+  If the cookie is not present, or if the encrypted id in the cookie does not match the 
+  id of the conversation the user is trying to view, they will not see the new message form.
+</p>
+<%= image_tag "textsomebodydemo5.gif" %>
+<p>
+</p>
+<h4>Further Reading</h4>
+<p>
+</p>
+<p>
+  For more on implementing websockets with Rails, see <a href="https://guides.rubyonrails.org/action_cable_overview.html">Action Cable Overview</a>
+</p>
+<p>
+  For an introduction to using Twilio's Programmable SMS API with Ruby, check out their <a href="https://www.twilio.com/docs/sms/quickstart/ruby">Ruby Quickstart</a> page.
+</p>
