@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'static_pages/about'
   get 'static_pages/contact'
   resources :conversations, only: [:new, :create, :show] do
     post '/messages', to: "messages#create"
