@@ -7,15 +7,12 @@ class Conversation < ApplicationRecord
   validates :number, presence: true, uniqueness: true,
                       format: { with: VALID_PHONE_NUMBER_REGEX }
 
-  def send_sms(body)
-    if !(["development", "test"].include? ENV["RAILS_ENV"])
-      client = Twilio::REST::Client.new
-      client.messages.create(
-        from: ENV['TWILIO_FROM_NUMBER'],
-        body: body,
-        to: number
-      )
-    end
+  def send_sms(body, client = Twilio.REST.Client.new)
+    client.messages.create(
+      from: ENV['TWILIO_FROM_NUMBER'],
+      body: body,
+      to: number
+    )
   end
 
   def Conversation.new_token
